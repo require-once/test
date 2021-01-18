@@ -1,53 +1,42 @@
 <?php
 
 /* @var $this yii\web\View */
+/* @var $model frontend\models\Test */
 
-$this->title = 'My Yii Application';
+use yii\helpers\Html;
+use yii\widgets\ActiveForm;
+
+$this->registerCssFile('@web/css/slider.css');
+$this->registerJsFile('@web/js/slider.js');
+
+if ($model->hasErrors()) {
+  var_dump($model->getErrors());
+}
+
 ?>
-<div class="site-index">
 
-    <div class="jumbotron">
-        <h1>Congratulations!</h1>
+<h1>Отправить данные</h1>
+<div class="row">
+    <div class="col-lg-4">
 
-        <p class="lead">You have successfully created your Yii-powered application.</p>
+        <?php
+        $form = ActiveForm::begin();
+        $options = [
+            'min' => 1,
+            'max' => 10,
+            'class' => 'slider',
+        ];
 
-        <p><a class="btn btn-lg btn-success" href="http://www.yiiframework.com">Get started with Yii</a></p>
-    </div>
+        echo $form->field($model, 'quantity')->input('range', $options)->label('Количество - 5');
+        echo $form->field($model, 'email')->label('Email');
+        echo $form->field($model, 'fio')->label('ФИО');
 
-    <div class="body-content">
+        echo Html::submitButton('Отправить', [
+          'class' => 'btn btn-primary',
+        ]);
 
-        <div class="row">
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/doc/">Yii Documentation &raquo;</a></p>
-            </div>
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/forum/">Yii Forum &raquo;</a></p>
-            </div>
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/extensions/">Yii Extensions &raquo;</a></p>
-            </div>
-        </div>
+        ActiveForm::end();
+        ?>
 
     </div>
 </div>

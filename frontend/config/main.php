@@ -42,6 +42,9 @@ return [
             'rules' => [
             ],
         ],
+        'saveService' => [
+            'class' => 'frontend\components\SaveService',
+        ],
     ],
     'params' => $params,
 ];
